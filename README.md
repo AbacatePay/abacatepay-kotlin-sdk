@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.ssimiao:abacatepay-kotlin-sdk:1.0.4'
+    implementation 'com.github.abacatepay:abacatepay-kotlin-sdk:0.0.5'
 }
 ```
 

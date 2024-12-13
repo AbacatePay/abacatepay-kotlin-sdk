@@ -1,0 +1,28 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.0.0'
+    id 'application'
+    id 'org.jetbrains.kotlin.plugin.serialization' version "2.0.0"
+    id 'maven-publish'
+    id 'java-library'
+}
+
+group = 'com.abacatepay'
+version = '0.0.5'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.abacatepay:abacatepay-kotlin-sdk:0.0.5'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+kotlin {
+    jvmToolchain(11)
+}
