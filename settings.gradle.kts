@@ -15,3 +15,4 @@ plugins {
 rootProject.name = "abacatepay-kotlin-sdk"
 
 include(":core")
+include(":docs")
