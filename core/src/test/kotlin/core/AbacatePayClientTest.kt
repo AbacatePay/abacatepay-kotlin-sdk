@@ -1,7 +1,16 @@
 package core
 
 import com.abacatepay.client.AbacatePayClient
-import com.abacatepay.model.*
+import com.abacatepay.model.enums.BillingStatus
+import com.abacatepay.model.enums.PaymentFrequency
+import com.abacatepay.model.enums.PaymentMethod
+import com.abacatepay.model.request.BillingRequest
+import com.abacatepay.model.request.CustomerRequest
+import com.abacatepay.model.request.ProductRequest
+import com.abacatepay.model.response.AbacatePayResponse
+import com.abacatepay.model.response.BillingResponse
+import com.abacatepay.model.response.CustomerResponse
+import com.abacatepay.model.response.ProductResponse
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
 import io.ktor.utils.io.*
@@ -9,7 +18,6 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Test
-import java.time.LocalDateTime
 import kotlin.test.assertNotNull
 
 class AbacatePayClientTest {
@@ -18,14 +26,14 @@ class AbacatePayClientTest {
     fun shouldCreateBillingAndCustomer() {
         val abacatePayClient: AbacatePayClient = abacatePayClientMock(
             AbacatePayResponse(
-                billingResponseTemplate(productResponseTemplate(), customerTemplate())
+                billingResponseTemplate(productResponseTemplate(), customerResponseTemplate())
             )
         )
 
-        val product = Product("id", "produto", "descricao", 1, 100)
+        val product = ProductRequest(externalId = "id", name = "product", quantity = 1, description = "description", price = 100)
         val customer = customerTemplate()
 
-        val billing = Billing(
+        val billing = BillingRequest(
             PaymentFrequency.ONE_TIME,
             listOf(PaymentMethod.PIX),
             listOf(product),
@@ -44,7 +52,7 @@ class AbacatePayClientTest {
     fun shouldListBilling() {
         val abacatePayClient: AbacatePayClient = abacatePayClientMock(
             AbacatePayResponse(
-                listOf(billingResponseTemplate(productResponseTemplate(), customerTemplate()))
+                listOf(billingResponseTemplate(productResponseTemplate(), customerResponseTemplate()))
             )
         )
 
@@ -56,29 +64,24 @@ class AbacatePayClientTest {
 
     private fun productResponseTemplate() = ProductResponse("id", "id", 1)
 
-    private fun customerTemplate() =
-        Customer("nome", "1268711192", "clienteteste@gmail.com", "49799449065")
+    private fun customerTemplate() = CustomerRequest(name = "nome", cellphone = "1268711192", email ="clienteteste@gmail.com", "49799449065", zipCode = "00000-999")
 
-    private fun billingResponseTemplate(productResponse: ProductResponse, customer: Customer) =
+    private fun customerResponseTemplate() = CustomerResponse(id = "id", metadata = customerTemplate())
+
+    private fun billingResponseTemplate(productResponse: ProductResponse, customer: CustomerResponse) =
         BillingResponse(
-            "id",
-            "url",
-            100,
-            PaymentStatus.PENDING,
-            true,
-            listOf(PaymentMethod.PIX),
-            listOf(productResponse),
-            PaymentFrequency.ONE_TIME,
-            "id",
-            "id",
-            LocalDateTime.now().toString(),
-            LocalDateTime.now().toString(),
-            BillingMetadata(
-                100,
-                "http://voltar",
-                "http://completar"
-            ),
-            Metadata(customer)
+            id ="id",
+            url = "url",
+            amount = 100,
+            status = BillingStatus.PENDING,
+            devMode = true,
+            paymentMethods = listOf(PaymentMethod.PIX),
+            products = listOf(productResponse),
+            frequency = PaymentFrequency.ONE_TIME,
+            customer = customer,
+            nextBilling = "id",
+            allowCoupons = false,
+            coupons = emptyList(),
         )
 
     @Test
@@ -86,12 +89,12 @@ class AbacatePayClientTest {
         val customer = customerTemplate()
         val abacatePayClient: AbacatePayClient = abacatePayClientMock(
             AbacatePayResponse(
-                createCustomeResponseTemplate(customer)
+                createCustomerResponseTemplate(customer)
             )
         )
 
         runBlocking {
-            val customerResponse = abacatePayClient.createCustomer(customer)
+            val customerResponse = abacatePayClient.createCustomer(customerTemplate())
             assertNotNull(customerResponse)
         }
     }
@@ -116,14 +119,9 @@ class AbacatePayClientTest {
         }
     }
 
-    private fun createCustomeResponseTemplate(customer: Customer) = CreateCustomerResponse(
+    private fun createCustomerResponseTemplate(customer: CustomerRequest) = CustomerResponse(
         "id",
-        true,
-        "accountId",
-        "storeId",
-        LocalDateTime.now().toString(),
-        LocalDateTime.now().toString(),
-        customer
+        metadata = customer,
     )
 
     private inline fun <reified T> abacatePayClientMock(response: T) =

@@ -1,7 +1,11 @@
 package com.abacatepay.client
 
 import com.abacatepay.exception.AbacatePayGenericException
-import com.abacatepay.model.*
+import com.abacatepay.model.request.BillingRequest
+import com.abacatepay.model.request.CustomerRequest
+import com.abacatepay.model.response.AbacatePayResponse
+import com.abacatepay.model.response.BillingResponse
+import com.abacatepay.model.response.CustomerResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.*
@@ -24,7 +28,7 @@ class AbacatePayClient(
         }
     }
 
-    override suspend fun createBilling(billing: Billing): AbacatePayResponse<BillingResponse> {
+    override suspend fun createBilling(billing: BillingRequest): AbacatePayResponse<BillingResponse> {
         val response = httpClient.post("${baseUrl}/billing/create") {
             contentType(ContentType.Application.Json)
             setBody(billing)
@@ -42,7 +46,7 @@ class AbacatePayClient(
         return getAbacatePayResponse(response)
     }
 
-    override suspend fun createCustomer(customer: Customer): AbacatePayResponse<CreateCustomerResponse> {
+    override suspend fun createCustomer(customer: CustomerRequest): AbacatePayResponse<CustomerResponse> {
         val response =  httpClient.post("${baseUrl}/customer/create") {
             contentType(ContentType.Application.Json)
             setBody(customer)
