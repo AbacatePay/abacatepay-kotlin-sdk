@@ -2,11 +2,9 @@ package com.abacatepay.internal
 
 import com.abacatepay.exception.AbacatePayGenericException
 import com.abacatepay.model.response.AbacatePayResponse
-import io.ktor.client.call.body
-import io.ktor.client.statement.HttpResponse
-import io.ktor.client.statement.bodyAsText
-import io.ktor.client.statement.readRawBytes
-import io.ktor.http.isSuccess
+import io.ktor.client.call.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
 
 internal suspend inline fun <reified T> toAbacatePayResponse(response: HttpResponse): Result<AbacatePayResponse<T>> {
     return try {

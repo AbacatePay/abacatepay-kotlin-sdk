@@ -1,22 +1,11 @@
 package com.abacatepay.service
 
-import com.abacatepay.exception.AbacatePayGenericException
 import com.abacatepay.httpClient
 import com.abacatepay.mockEngine
-import com.abacatepay.model.response.AbacatePayResponse
-import com.abacatepay.model.response.MRRResponse
-import com.abacatepay.model.response.MerchantInfoResponse
-import com.abacatepay.model.response.RevenueResponse
-import com.abacatepay.model.response.TransactionPerDayResponse
-import com.abacatepay.model.response.TransactionSummaryResponse
-import io.ktor.http.HttpStatusCode
+import com.abacatepay.model.response.*
+import io.ktor.http.*
 import kotlinx.coroutines.runBlocking
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertIs
-import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 class PublicMRRServiceTest {
 
