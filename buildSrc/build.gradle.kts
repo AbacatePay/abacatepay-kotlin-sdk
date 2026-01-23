@@ -7,6 +7,12 @@ plugins {
 
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
+
 kotlin {
     jvmToolchain(11)
 }

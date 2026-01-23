@@ -1,11 +1,12 @@
 package com.abacatepay.client
 
 import com.abacatepay.internal.Constants
+import io.ktor.client.plugins.logging.LogLevel
 
 /**
  * Configuration options for the AbacatePay client.
  *
- * @property enableLogging A flag to enable or disable HTTP request and response logging.
+ * @property logLevel Ktor client logging level.
  * @property timeout The timeout duration in milliseconds for HTTP requests.
  * @property apiVersion The API version to be used when interacting with the AbacatePay service.
  * This property must be set to "v1", as only version 1 is currently supported.
@@ -15,19 +16,8 @@ import com.abacatepay.internal.Constants
  * @constructor Creates an instance of `AbacatePayOptions` with the specified logging, timeout, and API version settings.
  */
 data class AbacatePayOptions(
-    /**
-     * Enable or disable logging for debugging purposes.
-     */
-    val enableLogging: Boolean = false,
-
-    /**
-     * The timeout duration in milliseconds for HTTP requests.
-     */
+    val logLevel: LogLevel = LogLevel.NONE,
     val timeout: Long = 15000L,
-
-    /**
-     * The API version to be used when interacting with the AbacatePay service.
-     */
     val apiVersion: String = "v1"
 ) {
 

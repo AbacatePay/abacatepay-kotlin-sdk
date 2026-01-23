@@ -63,7 +63,7 @@ class AbacatePayClient(
             json()
         }
         install(Logging){
-            level = if (options.enableLogging) LogLevel.ALL else LogLevel.NONE
+            level = options.logLevel
         }
         install(HttpTimeout){
             requestTimeoutMillis = options.timeout
