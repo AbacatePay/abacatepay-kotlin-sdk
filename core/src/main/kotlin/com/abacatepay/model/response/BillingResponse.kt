@@ -7,7 +7,22 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 
-
+/**
+ * Represents a response from a billing operation.
+ *
+ * @property id Unique identifier for the billing operation.
+ * @property url The URL associated with the billing operation, potentially for review or follow-up.
+ * @property status The current status of the billing operation (e.g., PENDING, PAID, CANCELLED).
+ * @property devMode Indicates whether the operation was conducted in development mode.
+ * @property paymentMethods A list of payment methods available within the billing operation (e.g., CARD, PIX).
+ * @property products List of products involved in this billing operation.
+ * @property frequency Indicates the payment frequency, such as one-time or recurring payments.
+ * @property amount Deprecated field indicating the amount associated with the billing operation.
+ * @property nextBilling A string representing the next billing date or cycle.
+ * @property customer Metadata and details about the customer associated with the billing operation.
+ * @property allowCoupons Specifies if coupons are allowed for this billing operation.
+ * @property coupons A list of coupon codes applied or available for use with the billing operation.
+ */
 @Serializable
 data class BillingResponse(
     val id: String,

@@ -5,7 +5,6 @@ plugins{
 
 dependencies {
     rootProject.subprojects.filter { it.name !in listOf("docs") }.forEach {
-        println(it.name)
         dokka(project(":" + it.name))
     }
 }
