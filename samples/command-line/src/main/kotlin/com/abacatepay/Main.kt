@@ -4,9 +4,11 @@ import com.abacatepay.client.AbacatePayClient
 import com.abacatepay.client.AbacatePayOptions
 import io.ktor.client.plugins.logging.LogLevel
 
+const val API_KEY = "API-KEY"
+
 suspend fun main() {
     val abacatePayClient = AbacatePayClient(
-        apiKey = "abc_dev_CAL0sZM21NHtcJ1GjCxcUmTB",
+        apiKey = API_KEY,
         options = AbacatePayOptions(
             logLevel = LogLevel.INFO
         ),
