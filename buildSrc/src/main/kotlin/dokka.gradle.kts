@@ -10,7 +10,7 @@ dokka {
         sourceRoots.setFrom(project.projectDir.resolve("src/$name/kotlin"))
         sourceLink {
             localDirectory.set(file("src/$name/kotlin"))
-            remoteUrl("$REPO_URL/blob/master/${project.name}/src/$name/kotlin")
+            remoteUrl("$REPO_URL/blob/main/${project.name}/src/$name/kotlin")
             remoteLineSuffix.set("#L")
         }
     }
