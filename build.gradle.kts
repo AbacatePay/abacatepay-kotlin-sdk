@@ -5,7 +5,7 @@ allprojects {
         mavenCentral()
         gradlePluginPortal()
     }
-    group = "com.abacatepay"
+    group = "com.github.abacatepay"
     version = "1.0.0"
 }
 
