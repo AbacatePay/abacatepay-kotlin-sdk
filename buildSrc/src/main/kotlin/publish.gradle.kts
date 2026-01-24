@@ -7,7 +7,7 @@ val libraryData = extensions.create<PublishingExtension>("libraryData")
 publishing {
     publications {
         create<MavenPublication>("mavenJava"){
-            groupId = "com.abacatepay"
+            groupId = project.group.toString()
             artifactId = project.name
             version = project.version.toString()
 
