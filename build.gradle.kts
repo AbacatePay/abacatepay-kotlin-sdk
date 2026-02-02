@@ -13,6 +13,6 @@ subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
     extensions.configure<KotlinJvmProjectExtension> {
-        jvmToolchain(11)
+        jvmToolchain(17)
     }
 }
