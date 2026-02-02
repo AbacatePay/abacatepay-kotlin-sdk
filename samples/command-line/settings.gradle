@@ -1,2 +1,4 @@
-rootProject.name = 'abacatepay'
+rootProject.name = 'command-line-sample'
+
+includeBuild("../..")
 

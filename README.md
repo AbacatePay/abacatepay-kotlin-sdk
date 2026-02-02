@@ -29,7 +29,7 @@ dependencies {
 ```kotlin
 runBlocking {
     val client = AbacatePayClient(apiKey = "your_key")
-    client.listBillings()
+    client.billing.list()
 }
 
 ```
