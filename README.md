@@ -1,17 +1,18 @@
 <div align="center">
-    <img src="https://i.imgur.com/bnDP5Zx.png" width="300" align="center" alt="drawing"/>
-</div>
 
 # AbacatePay Kotlin SDK
 
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.0-blue.svg)](http://kotlinlang.org)
-[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io)
+The easiest way to integrate your Kotlin code to **AbacatePay** Payment Gateway with support to coroutines and multiplatform
 
-The easiest way to integrate your kotlin base code to AbacatePay Gateway with support to coroutines and multiplatform
+<img src="https://res.cloudinary.com/dkok1obj5/image/upload/v1767631413/avo_clhmaf.png" width="100%" alt="AbacatePay Open Source Image"/>
+
+Você pode ver documentação completa do SDK [aqui](https://docs.abacatepay.com/pages/sdk/kotlin).
 
 ## Download
 
 ### For release version
+
+</div>
 
 ```kotlin
 repositories {
@@ -24,22 +25,31 @@ dependencies {
 }
 ```
 
+<div align="center">
+
 ## Quick Start
+
+</div>
 
 ```kotlin
 runBlocking {
-    val client = AbacatePayClient(apiKey = "your_key")
+    val client = AbacatePayClient(apiKey = "YOUR_API_KEY")
+
     client.billing.list()
 }
-
 ```
+
+<div align="center">
 
 ## Requirements
 
-- If you are using Android, It needs to be Android 5+.
+</div>
+
 - Java 17+
 - Kotlin 2+
+- If you are using Android, It needs to be Android 5+.
 
-## Credits
-
-This sdk brought to you by [contributors](https://github.com/ssimiao/abacatepay-kotlin-sdk/graphs/contributors).
+<div align="center">
+    Feito com 🥑 pela equipe AbacatePay</br>
+Open source, de verdade.
+</div>
