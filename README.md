@@ -37,7 +37,7 @@ runBlocking {
 ## Requirements
 
 - If you are using Android, It needs to be Android 5+.
-- Java 11+
+- Java 17+
 - Kotlin 2+
 
 ## Credits
